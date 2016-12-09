@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   belongs_to :phone
+  has_many :rounds
 
   def get_api_response(endpoint)
     uri = URI.parse(URI.encode(endpoint))
