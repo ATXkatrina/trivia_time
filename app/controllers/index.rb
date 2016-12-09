@@ -1,3 +1,4 @@
+
 get '/' do
   erb :index
 end
@@ -12,6 +13,7 @@ end
 
 post '/send_sms' do
 
+# fix this before next push
   account_sid = 'AC43244dcfbb8c4cdf258a76748a1f8c3d'
   auth_token = 'bd373e899538cf139268013d03934acc'
 

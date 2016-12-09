@@ -1,0 +1,3 @@
+class Phone < ActiveRecord::Base
+  # Remember to create a migration!
+end
