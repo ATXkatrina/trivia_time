@@ -2,15 +2,11 @@
     <h3>Enter your phone number to receive Trivia questions on the go!</h3 >
       <div class="ui form">
         <div class="five wide field">
-          <div class="inline field">
-            <input type="text" name="phone" placeholder="+5125555555">
-            <input class="ui teal button" type="submit" value="Submit">
-          </div>
+            <form class="inline field" action='/game/new' method='POST'>
+              <input type="text" name="phone" placeholder="+5125555555">
+              <input class="ui teal button" type="submit" value="Submit">
+            </form>
         </div>
       </div>
-<!--     <form class="ui form" action='/game/new' method='POST'>
-      <input type="text" name="phone" placeholder="+5125555555">
-      <input class="ui teal button" type="submit" value="Submit">
-    </form> -->
   </div>
 </div>
