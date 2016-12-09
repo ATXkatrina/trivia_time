@@ -8,7 +8,11 @@ class Game < ActiveRecord::Base
   end
 
   def play
-    self.get_api_response("https://opentdb.com/api.php?amount=3&category=11")["results"][0]["question"]
+    data = self.get_api_response("https://opentdb.com/api.php?amount=3&category=11")["results"][0]
+    question_set = []
+    question_set.push(data["question"])
+    question_set.push(data["correct_answer"])
+    return question_set
   end
 
 end

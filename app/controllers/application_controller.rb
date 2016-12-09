@@ -23,14 +23,17 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  Question_set = []
+
   post '/receive_sms' do
     body = params['Body'].downcase
     content_type 'text/xml'
     phone = Phone.find_by(number: params["From"][2..-1])
     game = Game.find_by(phone_id: phone.id)
+    Question_set = game.play
     response = Twilio::TwiML::Response.new do |r|
       if body == "play"
-        r.Message game.play
+        r.Message Question_set[0]
       elsif body == "quit"
         r.Message "Goodbye!"
       else
