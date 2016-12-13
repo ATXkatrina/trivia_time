@@ -1,3 +1,5 @@
+enable :sessions
+
 get '/' do
   erb :index
 end
@@ -7,16 +9,16 @@ post '/receive_sms' do
   content_type 'text/xml'
   phone = Phone.find_by(number: params["From"][2..-1])
   game = Game.find_by(phone_id: phone.id)
-  question_set = game.play
   response = Twilio::TwiML::Response.new do |r|
     if body == "play"
-      round = Round.new
-      round.question = question_set[0]
-      round.answer = question_set[1]
-      round.save
-      r.Message round.question
+      data = game.play
+      session[:question] = data["question"]
+      session[:answer] = data["answer"]
+      r.Message session[:question]
     elsif body == "quit"
       r.Message "Goodbye!"
+    elsif body == session[:answer]
+      r.Message "Nicely done!"
     else
       r.Message "Read you loud and clear!"
     end
