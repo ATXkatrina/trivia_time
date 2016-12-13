@@ -3,7 +3,6 @@ get '/' do
 end
 
 post '/receive_sms' do
-  binding.pry
   body = params['Body'].downcase
   content_type 'text/xml'
   phone = Phone.find_by(number: params["From"][2..-1])
@@ -25,8 +24,8 @@ post '/receive_sms' do
   response.to_xml
 end
 
-post '/send_sms' do
-  to = params["to"]
-  message = params["body"]
-  send_sms(to, message)
-end
+# post '/send_sms' do
+#   to = params["to"]
+#   message = params["body"]
+#   send_sms(to, message)
+# end
