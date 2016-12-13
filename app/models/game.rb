@@ -13,4 +13,15 @@ class Game < ActiveRecord::Base
     return data
   end
 
+  def set_poss(data)
+    poss_answers = []
+    poss_answers.push("(A)" + " " + data["correct_answer"])
+    wrong_answers = data["incorrect_answers"]
+    alphabet = ('A'..'Z').to_a
+    wrong_answers.each_with_index do |ans, i|
+      poss_answers.push("(" + alphabet[i+1] + ")" + " " + ans)
+    end
+    return poss_answers
+  end
+
 end

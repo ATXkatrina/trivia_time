@@ -13,17 +13,22 @@ post '/receive_sms' do
     if body == "play"
       data = game.play
       session[:question] = data["question"]
-      session[:answer] = data["answer"]
-      r.Message session[:question]
+      session[:correct_answer] = data["correct_answer"]
+      session[:poss_answers] = game.set_poss(data)
+      r.Message "#{session[:question]}" + " " + "#{session[:poss_answers].join(", ")}"
     elsif body == "quit"
       r.Message "Goodbye!"
-    elsif body == session[:answer]
+    elsif body == session[:correct_answer]
       r.Message "Nicely done!"
     else
       r.Message "Read you loud and clear!"
     end
   end
   response.to_xml
+end
+
+get '/session' do
+  session.inspect
 end
 
 # post '/send_sms' do
