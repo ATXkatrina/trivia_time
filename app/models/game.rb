@@ -9,6 +9,7 @@ class Game < ActiveRecord::Base
     JSON.parse(api_response)
   end
 
+  # ENCODING ISSUE UTF-8/TRANSCODING
   # select one question's data
   def play
     data = self.get_api_response("https://opentdb.com/api.php?amount=3&category=11")["results"][0]
