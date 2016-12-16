@@ -1,3 +1,4 @@
+# upon new phone no. (user), send this message
 post '/phone/new' do
   phone = Phone.create(number: params[:phone])
   game = Game.new

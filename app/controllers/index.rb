@@ -4,6 +4,7 @@ get '/' do
   erb :index
 end
 
+# any user-submitted text catches here
 post '/receive_sms' do
   body = params['Body'].downcase
   content_type 'text/xml'
