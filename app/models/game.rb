@@ -10,6 +10,7 @@ class Game < ActiveRecord::Base
   end
 
   # ENCODING ISSUE UTF-8/TRANSCODING
+  # https://ruby-doc.org/core-2.2.0/Encoding.html
   # select one question's data
   def play
     data = self.get_api_response("https://opentdb.com/api.php?amount=3&category=11")["results"][0]
