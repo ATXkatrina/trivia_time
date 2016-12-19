@@ -1,6 +1,5 @@
 class Game < ActiveRecord::Base
   belongs_to :phone
-  has_many :rounds
 
   # retrieve API info
   def get_api_response(endpoint)
